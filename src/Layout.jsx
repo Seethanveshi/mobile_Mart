@@ -1,5 +1,5 @@
 import React from 'react'
-import NormalHeader from './components/Header/normalHeader'
+import NormalHeader from './components/Header/NormalHeader'
 import { Outlet } from 'react-router-dom'
 
 function Layout() {
