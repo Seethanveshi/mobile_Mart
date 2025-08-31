@@ -75,7 +75,7 @@ function SingleMobile() {
     const fetchWishlistData = async() => {
         const data = await databaseService.getWishlist();
 
-        const ind = data?.findIndex((product) => product.ProductId == id);
+        const ind = data?.findIndex((product) => product.ProductId == id) || -1;
 
         if(ind!=-1) setWish(true);
     }
