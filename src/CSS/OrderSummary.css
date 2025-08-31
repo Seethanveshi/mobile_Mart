@@ -1,0 +1,14 @@
+.placeOrderButton{
+    width:100%;
+    padding:15px;
+    color:white;
+    font-size:16px;
+    background-color:rgb(10, 160, 10);
+    border:none;
+    font-weight:bold;
+    transition: box-shadow 0.2s;
+}
+
+.placeOrderButton:hover{
+    box-shadow:0px 0px 6px black;
+}

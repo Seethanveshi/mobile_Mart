@@ -1,0 +1,161 @@
+img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+a{
+    cursor: pointer;
+}
+
+svg{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+
+button{
+    cursor:pointer;
+}
+input{
+    cursor:auto;
+} 
+
+.header{
+    display: flex;
+    width:100%;
+    height:70px;
+    position: fixed;
+    align-items: center;
+    background-color: white;
+    top:0px;
+    left:0px;
+    right:0px;
+    z-index: 2;
+}
+
+.NavBar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    justify-content: space-around;
+}
+
+.NavItemStart{
+    flex: 1;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.NavItemCenter{
+    flex: 1;
+    height: 100%;
+    justify-content: center;
+
+}
+
+.NavItemEnd{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1;
+}
+
+.searchBlock{
+    display:flex;
+    position: relative;
+    width:100%;
+}
+
+.searchButtonBlock{
+    position: absolute;
+    width: 35px;
+    right: 2%;
+    top:20%;
+}
+
+.searchInput{
+    width:100%;
+    height:45px;
+    border:none;
+    border-radius: 18px;
+    padding:5px 15px;
+    background-color:white;
+    box-shadow: 0px 0px 5px rgba(0 , 0 , 0 , 0.5);
+    font-size:16px;
+}
+
+.notificationBlock{
+    display: flex;
+}
+
+.cartToggle{
+    content: '';
+    position: absolute;
+    top:-30%;
+    right:50%;
+    width:18px;
+    height: 18px;
+    font-size: 16px;
+    align-items: center;
+    border-radius: 50%;
+    background-color: red;
+}
+
+
+.profileBlock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.dropDown{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.dropDownContent{
+    display: none;
+    flex-direction: column;
+    width: 150px;
+    left:0%;
+    top:100%;
+    z-index: 1;
+    position: absolute;
+}
+
+.dropDownContent button{
+    border: none;
+    background-color: white;
+    font-size: 15px;
+    padding: 15px;
+}
+
+.dropDownContent button:hover{
+    background-color: grey;
+}
+
+.profileBlock:hover .dropDownContent{
+    display: flex;
+}
+
+.menuSymbol{
+    display: flex;
+    transform: rotate(90deg);
+    transition: all 0.2s linear;
+}
+
+.profileBlock:hover .menuSymbol{
+    transform: rotate(-90deg);
+}

@@ -1,0 +1,35 @@
+/* body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.scroll-buttons {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.scroll-wrapper {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px;
+}
+
+.item {
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f9f9f9;
+  flex-shrink: 0;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+} */

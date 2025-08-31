@@ -1,0 +1,167 @@
+#root {
+  margin: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+button{
+  cursor:pointer;
+  box-sizing: border-box;
+}
+
+input{
+    cursor:auto;
+    padding: 10px 5px;
+    width: 15rem;
+    border: none;
+    border-radius: 10px;
+    padding:12px 8px;
+    font-size:16px;
+    background-color: rgb(199, 197, 197);
+    box-sizing: border-box;
+    color: black;
+}
+
+
+.Login_Fields , .SignUp_Fields{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.Login_Form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+    width: 350px;
+    height: 420px;
+    border-radius: 20px;
+    animation-name: slide1;
+    animation-duration: 1s;
+}
+
+@keyframes slide1{
+  0%{
+    transform: translateX(100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}
+
+.SignUp_Form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+    width: 350px;
+    height: 420px;
+    animation-name: slide2;
+    animation-duration: 1s;
+    border-radius: 20px;
+}
+
+@keyframes slide2{
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0%);
+  }
+}
+
+
+
+.Login_Form_notActive{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color:green; */
+    width: 350px;
+    height: 420px;
+    border-radius: 20px;
+    z-index: 5;
+}
+
+.SignUp_Form_notActive{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color:green; */
+    width: 350px;
+    height: 420px;
+    border-radius: 20px;
+    z-index: 5;
+}
+
+
+.Login_Button , .SignUp_Button{
+  color:white;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: green;
+  width:100%;
+  height: 40px;
+  width: 15rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+}
+
+
+.Login_Button:active , .SignUp_Button:active{
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+
+.Login_Button_notActive , .SignUp_Button_notActive{
+    font-size: 16px;
+    padding:15px 35px;
+    border-color:white;
+    border-style:solid;
+    border-radius:20px;
+    margin:10px;
+    color:white;
+    background-color: transparent;
+    cursor:pointer;
+}
+
+.Login_SignUp_Page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position:relative;
+  background-color: white;
+  border-radius:20px;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+
+.slider.Active{
+  transform: translateX(0%);
+}
+
+.slider{
+  position: absolute;
+  background-color: green;
+  height: 100%;
+  width: 50%;
+  border-radius: 20px;
+  left:50%;
+  transform: translateX(-100%);
+  transition-timing-function: ease-in-out;
+  transition-duration: 1s; 
+  z-index: 1;
+}
