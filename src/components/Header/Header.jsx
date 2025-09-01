@@ -12,7 +12,7 @@ function Header() {
 
   const navigate = useNavigate();
   const dispatch  = useDispatch();
-  const cartDataRedux = useSelector(state => state.cartService.cartItems);
+  const cartDataRedux = useSelector(state => state.cartService);
 
   const data = useSelector(state => state.authService);
   const [isLogined , setLogin] = useState(false);
@@ -30,11 +30,12 @@ function Header() {
 
     const fetchCartData = async() => {
       if(data.status){
-        const cart = cartDataRedux;
+        const cart = cartDataRedux.cartItems;
         setCartItems(cart);
       }
       else{
-        setCartItems(JSON.parse(localStorage.getItem('guestCart')) || []);
+        setCartItems(cartDataRedux.guestCartItems);
+        // setCartItems(JSON.parse(localStorage.getItem('guestCart')) || []);
       }
 
     }
@@ -53,6 +54,17 @@ function Header() {
     dispatch(LogOutUser());
     window.location.href = '/loginSignup'
   }
+
+  const handleWishlist = () =>{
+    if(isLogined){
+      navigate('/wishlist');
+    }
+    else{
+      alert('Please Login/SignUp to access your Wishlist.');
+    }
+  }
+
+
 
   return (
     <header className="header">
@@ -111,8 +123,8 @@ function Header() {
               <div className='cartToggle'>{cartLength}</div>
             </div>
 
-            <div style={{ alignItems:'center'}} className="notificationBlock">
-              <a style={{display:'flex' , width:'100%' , alignItems:'center' , textDecoration:'none'}} className="notificationButton" href="\wishlist">
+            <div style={{ alignItems:'center'}} className="wishListBlock">
+              <a onClick={handleWishlist} style={{display:'flex' , width:'100%' , alignItems:'center' , textDecoration:'none'}} className="notificationButton">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 16">
                   <path
                       d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z"
@@ -129,7 +141,7 @@ function Header() {
             
             {
               isLogined ? <div className="profileBlock">
-                            <a style={{display:'flex' , alignItems:'center' , textDecoration:'none'}} className="profileButton" href="#">
+                            <a style={{display:'flex' , alignItems:'center' , textDecoration:'none'}} className="profileButton">
                               <svg style={{width:'40px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g clipPath="url(#clip0)">
                                   <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
@@ -184,7 +196,7 @@ function Header() {
                               </svg>
                               <div onClick={() => navigate('/LoginSignUp')} style={{fontSize:'17px' , marginLeft:'5px' , color:'black'}}>Login/SignUp</div>
                             </a>
-                          </div>
+                        </div>
             }  
           </li>
         </ul>

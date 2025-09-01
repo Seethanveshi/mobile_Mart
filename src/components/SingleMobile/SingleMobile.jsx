@@ -3,12 +3,12 @@ import databaseService from '../../Database/Database'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useSelector , useDispatch } from 'react-redux';
-import { setCartItemsRedux } from '../../ReduxtoolKit/Slice/cartRedux';
+import { setCartItemsRedux , setGuestCartItemsRedux} from '../../ReduxtoolKit/Slice/cartRedux';
 
 function SingleMobile() {
 
     const reduxData = useSelector(state => state.authService);
-    const cartDataRedux = useSelector(state => state.cartService.cartItems);
+    const cartDataRedux = useSelector(state => state.cartService);
     const navigate = useNavigate();
     const {id} = useParams();
 
@@ -26,11 +26,12 @@ function SingleMobile() {
 
     const fetchCartItems = async() =>{
         if(reduxData.status){
-            const data = cartDataRedux;
+            const data = cartDataRedux.cartItems;
             setCartItems(data);
         }
         else{
-            setCartItems(JSON.parse(localStorage.getItem('guestCart')) || []);
+            setCartItems(cartDataRedux.guestCartItems);
+            // setCartItems(JSON.parse(localStorage.getItem('guestCart')) || []);
         }
     }
 
@@ -101,6 +102,7 @@ function SingleMobile() {
                 await databaseService.updateQuantity({val : updatedArray[ind].Quantity , ID:mobile.$id});
             }
             else{
+                dispatch(setGuestCartItemsRedux(updatedArray));
                 localStorage.setItem('guestCart' , JSON.stringify(updatedArray));
             }
         }
@@ -116,6 +118,7 @@ function SingleMobile() {
                 await databaseService.addToCart(mobile);
             }
             else{
+                dispatch(setGuestCartItemsRedux(updatedArray));
                 localStorage.setItem('guestCart' , JSON.stringify(updatedArray));   
             }
         }
@@ -126,9 +129,15 @@ function SingleMobile() {
 
 
     const handleWishlist = () => {
-        if(!wish) databaseService.addToWishlist(mobile);
-        else databaseService.deleteFromWishlist(mobile.$id);
-        setWish((prev) => !prev);
+
+        if(reduxData.status){
+            if(!wish) databaseService.addToWishlist(mobile);
+            else databaseService.deleteFromWishlist(mobile.$id);
+            setWish((prev) => !prev);
+        }
+        else{
+            alert('Please Login/SignUp to add items to your wishlist.')
+        }
     }
 
     const BuyNow = async (mobile) => {

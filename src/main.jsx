@@ -26,7 +26,7 @@ const router = createBrowserRouter(
         <Route path='/home' element={<Home />} />
         <Route path='/mobiles/:categoryName/:category' element={<Mobiles />} />
         <Route path='/mobile/:id' element={<SingleMobile />} />
-        <Route path='/Wishlist' element={<Wishlist />} />
+        <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/orders' element={<PrivateRoute><OrdersPage /></PrivateRoute>} />
       </Route>

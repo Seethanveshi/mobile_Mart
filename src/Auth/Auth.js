@@ -3,8 +3,6 @@ import confi from '../confi/confi'
 import { combineSlices } from "@reduxjs/toolkit";
 
 
-console.log("Appwrite URL (from config):", confi.appwriteUrl);
-
 export class AuthService{
     client = new Client();
     account;

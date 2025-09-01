@@ -4,14 +4,14 @@ import { useSelector , useDispatch } from 'react-redux';
 import databaseService from '../../Database/Database';
 import '../../CSS/OrderSummary.css'
 import { useNavigate } from 'react-router-dom';
-import { setCartItemsRedux } from '../../ReduxtoolKit/Slice/cartRedux';
+import { setCartItemsRedux , setGuestCartItemsRedux } from '../../ReduxtoolKit/Slice/cartRedux';
 
 function Cart() {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const reduxData = useSelector(state => state.authService);
-    const cartdataRedux = useSelector(state => state.cartService.cartItems);
+    const cartdataRedux = useSelector(state => state.cartService);
 
     const [cartItems , setCartItems] = useState([]);
     const [totalMRP , setTotalMRP] = useState(0);
@@ -24,7 +24,7 @@ function Cart() {
 
     const fetch = async () =>{
         if(reduxData.status){
-            const cartData = cartdataRedux;
+            const cartData = cartdataRedux.cartItems;
             const updatedData = cartData?.map(item => ({
                 ...item, 
                 deliveryDate : getDate()
@@ -32,7 +32,7 @@ function Cart() {
             setCartItems(updatedData);
         }
         else{
-            const  cartData = JSON.parse(localStorage.getItem('guestCart')) || [];
+            const  cartData = cartdataRedux.guestCartItems ;
             const updatedData = cartData?.map(item => ({
                 ...item, 
                 deliveryDate : getDate()
@@ -60,6 +60,7 @@ function Cart() {
             databaseService.updateQuantity({val:newQty , ID:ID});
         }
         else{
+            dispatch(setGuestCartItemsRedux(updatedCart));
             localStorage.setItem('guestCart' , JSON.stringify(updatedCart));
         }
 
@@ -74,8 +75,10 @@ function Cart() {
             dispatch(setCartItemsRedux(updatedCart));
             databaseService.deleteItem(ID);
         }
-        else localStorage.setItem('guestCart' , JSON.stringify(updatedCart));
-
+        else{
+            dispatch(setGuestCartItemsRedux(updatedCart));
+            localStorage.setItem('guestCart' , JSON.stringify(updatedCart));
+        }
         return ;
     }
 

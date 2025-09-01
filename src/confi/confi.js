@@ -10,8 +10,5 @@ const confi = {
   appwriteBucketId: import.meta.env.VITE_APPWRITE_BUCKET_ID,
 };
 
-
-console.log("Loaded Appwrite config:", confi);
-
 export default confi;
 
