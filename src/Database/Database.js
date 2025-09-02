@@ -94,11 +94,32 @@ export class DatabaseService{
                 confi.appwriteDatabaseId,
                 confi.appwriteCollectionId,
 
-                [Query.equal(CategoryName , Category)]
+                [Query.search(CategoryName , Category)]
             );
             
             console.log("Getting data Done");
-            return result.documents;
+
+            const data = result?.documents || [];
+
+            if(CategoryName === 'Name'){
+                const sortedData = data.sort((a , b) => {
+                    const nameA = a[CategoryName].toLowerCase();
+                    const nameB = b[CategoryName].toLowerCase();
+                    const searchTerm = Category.toLowerCase();
+
+                    if(nameA === searchTerm && nameB !== searchTerm) return -1;
+                    if(nameA !== searchTerm && nameB === searchTerm) return 1;
+
+                    if(nameA.startsWith(searchTerm) && !nameB.startsWith(searchTerm)) return -1;
+                    if(!nameA.startsWith(searchTerm) && nameB.startsWith(searchTerm)) return 1;
+
+                    return 0;
+                })
+
+                return sortedData;
+            }
+
+            return data;
         }
         
         catch (error) {

@@ -16,7 +16,7 @@ function OrdersPage() {
     }
 
     return (
-        <div style={{padding:'5.3rem 20% 5rem 20%'}}>
+        <div style={{padding:'5.3rem 20% 5rem 20%' , height:'100vh'}}>
             <div style={{display:'flex' , flexDirection:'column' , gap:'8px'}}>
                 <div style={{backgroundColor:'white' , padding:'5px'}}>
                     Orders

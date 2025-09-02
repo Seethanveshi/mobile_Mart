@@ -28,7 +28,7 @@ function Mobiles() {
   console.log(MobileCategory);
 
   return (
-    <div className='mobiles' style={{padding:'4.8rem 15% 0rem 15%' , backgroundColor:'rgb(237, 237, 237'}}>
+    <div className='mobiles' style={{padding:'4.8rem 15% 0rem 15%' , backgroundColor:'rgb(237, 237, 237' , minHeight:'100vh'}}>
         <div>
           {
             MobileCategory?.map((mobile , ind) => (

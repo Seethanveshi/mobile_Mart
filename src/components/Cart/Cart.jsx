@@ -98,7 +98,7 @@ function Cart() {
     } , [cartItems]);
 
     return (
-        <div  style={{padding:'5.3rem 10% 0rem 10%' , backgroundColor:''}}>
+        <div  style={{padding:'5.3rem 10% 0rem 10%' , height:'100vh'}}>
         {
             cartItems?.length<=0 ? 
                 <div style={{display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center' , gap:'10px'}}>

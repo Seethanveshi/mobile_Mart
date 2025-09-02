@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector  , useDispatch} from 'react-redux';
 import '../../CSS/Header.css';
 import { Link } from 'react-router-dom';
@@ -14,11 +14,29 @@ function Header() {
   const dispatch  = useDispatch();
   const cartDataRedux = useSelector(state => state.cartService);
 
+  const [AllMobiles , setAllMobiles] = useState([]);
+  const [query , setQuery] = useState('');
+  const [suggestions , setSuggestions] = useState([]);
+  const [selectedMobiles , setSelectedMobiles] = useState([]);
+
+ 
   const data = useSelector(state => state.authService);
   const [isLogined , setLogin] = useState(false);
   const [Name , setName] = useState('');
   const [cartLength , setCartLength] = useState(0);
   const [cartItems , setCartItems] = useState([]);
+
+  const searchRef = useRef(null);
+
+
+  useEffect(() => {
+    const fetchAllMobiles = async() => {
+      const AllMobilesData = await databaseService.getAlldata();
+      setAllMobiles(AllMobilesData);
+    }
+
+    fetchAllMobiles();
+  }, []);
 
   useEffect(() => {
 
@@ -37,7 +55,6 @@ function Header() {
         setCartItems(cartDataRedux.guestCartItems);
         // setCartItems(JSON.parse(localStorage.getItem('guestCart')) || []);
       }
-
     }
 
     fetchCartData();
@@ -64,7 +81,40 @@ function Header() {
     }
   }
 
+  const handleSuggestionClick = (mobile) => {
+    setSuggestions([]);
+    window.location.href = `/mobiles/Name/${mobile.Name}`;
+  }
 
+  const handleSearchQuery = (name) => {
+    setSuggestions([]);
+    window.location.href = `/mobiles/Name/${name}`;
+  }
+
+  useEffect(() => {
+    const trimedData = query.trim().toLowerCase();
+    if(trimedData === ''){
+      setSuggestions([]);
+      return ;
+    }
+
+    const suggestedData = AllMobiles.filter((mobile) => mobile.Name.toLowerCase().includes(trimedData));
+    setSuggestions(suggestedData);
+  } , [query]);
+
+  useEffect(() => {
+      const handleClickOutside = (event) =>{
+        if(searchRef.current && !searchRef.current.contains(event.target)){
+          setSuggestions([]);
+        }
+      }
+
+      document.addEventListener('mousedown' , handleClickOutside);
+
+      retrun => {
+        document.removeEventListener('mousedown' , handleClickOutside);
+      }
+  } , []); 
 
   return (
     <header className="header">
@@ -81,15 +131,22 @@ function Header() {
             </div>
           </li>
 
-          <li className="NavItemCenter">
+          <li className="NavItemCenter" ref={searchRef}> 
             <div className="searchBlock">
-                <div style={{width:'100%' , position:'relative'}}>
+                <div style={{width:'100%' , position:'relative' , cursor:'pointer'}}>
                     <input className = 'searchInput'
                     type="text"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if(e.key === 'Enter'){
+                        handleSearchQuery(query);
+                      }
+                    }}
                     placeholder="Search"
                     />
                     <div className='searchButtonBlock'>
-                        <button style={{border: 'none' , background:'none'}} className="searchButton">
+                        <button style={{border: 'none' , background:'none'}} className="searchButton" onClick={() => handleSearchQuery(query)}>
                             <img 
                             src="https://nyc.cloud.appwrite.io/v1/storage/buckets/6891ab870006c0711f88/files/6893414b002a21db2ab9/view?project=6891a8f2001fdab5d3e5&mode=admin"
                             alt="Search"
@@ -97,6 +154,24 @@ function Header() {
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <div style={{display:'flex' , position:'absolute' , left:'0' , width:'100%' , backgroundColor:'white' , borderRadius:'5px'}}>
+              <ul style={{textDecoration:'none' , listStyleType:'none' , width:'100%' , paddingLeft:'0px'}}>
+                {
+                  suggestions?.map((mobile , ind) => (
+                    <li 
+                        className='suggestedNames' 
+                        style={{padding:'0.5rem' , textAlign:'start' , overflow:'hidden'}} 
+                        key={ind}
+                        onClick={() => handleSuggestionClick(mobile)}
+  
+                        >{mobile.Name}
+
+                    </li>
+                  ))
+                }
+              </ul>
             </div>
           </li>
          
