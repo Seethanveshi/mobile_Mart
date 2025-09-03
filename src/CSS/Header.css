@@ -46,13 +46,19 @@ input{
 }
 
 .NavItemStart{
+    display: flex;
     flex: 1;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.mobileMartLogo{
+    width: 180px;
 }
 
 .NavItemCenter{
-    flex: 1;
+    display: flex;
+    flex: 2;
     height: 100%;
     justify-content: center;
     position: relative;
@@ -63,6 +69,7 @@ input{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    align-items: center;
     flex: 1;
 }
 
@@ -90,7 +97,15 @@ input{
     font-size:16px;
 }
 
-
+.suggestionsBlock{
+    display:flex;
+    position:absolute;
+    left:0;
+    top:105%;
+    width:100%;
+    background-color:white;
+    border-radius:5px;
+}
 
 
 .suggestedNames:hover{
@@ -155,6 +170,14 @@ input{
     background-color: grey;
 }
 
+.profileNameIndropDown{
+    display: none;
+    background-color: white;
+    font-size: 15px;
+    padding: 15px;
+}
+
+
 .profileBlock:hover .dropDownContent{
     display: flex;
 }
@@ -167,4 +190,66 @@ input{
 
 .profileBlock:hover .menuSymbol{
     transform: rotate(-90deg);
+}
+
+/* Small screens: Phones */
+@media (max-width: 900px) {
+  .NavBar {
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  .CartName , .WishlistName , .profileName{
+    display: none;
+  }
+
+  .profileNameIndropDown{
+    display: flex;
+  }
+
+  .mobileMartLogo{
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .searchBlock {
+    width: 90%;
+  }
+
+  .searchInput {
+    width: 100%;
+    font-size: 14px;
+    height: 40px;
+  }
+
+  .searchButtonBlock{
+    right: 10px;
+    top: 10px;
+    width: 30px;
+  }
+  .suggestionsBlock{
+    left: 5%;
+    width: 90%;
+  }
+
+  .NavItemEnd{
+    gap: 15px;
+  }
+
+  .cartToggle {
+    top: -8px;
+    right: -3px;
+    font-size: 14px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .dropDownContent {
+    width: 100px;
+    right: 0;
+    left: auto;
+  }
 }

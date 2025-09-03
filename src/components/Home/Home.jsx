@@ -153,7 +153,7 @@ function Home() {
         </div>
 
 
-        <div style={{width:'100%' , backgroundColor:'white' , marginTop:'15px' , height:'420px'}}>
+        <div className='categoryBlock'>
             <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>New Arrival Mobiles</div>
             <div className='products'>
                 <div
@@ -161,7 +161,7 @@ function Home() {
                     {
                         newArrivals?.map((product , ind) => (
                             <a key={ind} className='singleProduct' href={`/Mobile/${product.$id}`} target='_blank'>
-                                <div style={{height:'220px'}}>
+                                <div>
                                     <img src={product.ImageUrl} alt={product.Name} />
                                 </div>
                                 <div>{product.Name}</div>
@@ -180,7 +180,8 @@ function Home() {
             </div>
         </div>
 
-        <div style={{width:'100%' , backgroundColor:'white' , marginTop:'15px' , height:'420px'}}>
+
+        <div className='categoryBlock'>
             <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>FlagShip Mobiles</div>
             <div className='products'>
                 <div
@@ -207,7 +208,7 @@ function Home() {
             </div>
         </div>
 
-        <div style={{width:'100%' , backgroundColor:'white' , marginTop:'15px' , height:'420px'}}>
+        <div className='categoryBlock'>
             <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>MidRange Mobiles</div>
             <div className='products'>
                 <div
@@ -234,7 +235,7 @@ function Home() {
             </div>
         </div>
 
-        <div style={{width:'100%' , backgroundColor:'white' , marginTop:'15px' , height:'420px'}}>
+        <div className='categoryBlock'>
             <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>Budget Mobiles</div>
             <div className='products'>
                 <div

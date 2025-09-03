@@ -87,6 +87,11 @@ function Header() {
   }
 
   const handleSearchQuery = (name) => {
+
+    const trimmedNname = name.trim();
+
+    if(trimmedNname === '') return ;
+
     setSuggestions([]);
     window.location.href = `/mobiles/Name/${name}`;
   }
@@ -123,7 +128,7 @@ function Header() {
 
           <li className="NavItemStart">
             <div className="mobileMartLogo">
-              <img onClick={() => navigate('/Home')} style={{marginTop:'5px' , width:'180px'}}
+              <img onClick={() => navigate('/Home')} style={{marginTop:'5px'}}
                 src="https://nyc.cloud.appwrite.io/v1/storage/buckets/6891ab870006c0711f88/files/6893410e000c0818b113/view?project=6891a8f2001fdab5d3e5&mode=admin"
                 alt="MobileMart Logo"
                 title="MobileMart Logo"
@@ -156,7 +161,7 @@ function Header() {
                 </div>
             </div>
 
-            <div style={{display:'flex' , position:'absolute' , left:'0' , width:'100%' , backgroundColor:'white' , borderRadius:'5px'}}>
+            <div className='suggestionsBlock'>
               <ul style={{textDecoration:'none' , listStyleType:'none' , width:'100%' , paddingLeft:'0px'}}>
                 {
                   suggestions?.map((mobile , ind) => (
@@ -193,14 +198,14 @@ function Header() {
                     stroke="#111112" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"
                   />
                 </svg>
-                <div style={{marginLeft:'5px' , fontSize:'19px'}} >Cart</div>
+                <div className='CartName' style={{marginLeft:'5px' , fontSize:'19px'}} >Cart</div>
               </a>
               <div className='cartToggle'>{cartLength}</div>
             </div>
 
-            <div style={{ alignItems:'center'}} className="wishListBlock">
+            <div style={{ display:'flex' , justifyContent:"center" ,  alignItems:'center'}} className="wishListBlock">
               <a onClick={handleWishlist} style={{display:'flex' , width:'100%' , alignItems:'center' , textDecoration:'none'}} className="notificationButton">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 16">
+                <svg style={{width:'25px'}} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 16">
                   <path
                       d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z"
                       fill="white"
@@ -210,14 +215,14 @@ function Header() {
                       opacity="0.9"
                   />
                   </svg>
-                <div style={{color:'black' , marginLeft:'5px'}}>Wishlist</div>
+                <div className='WishlistName' style={{color:'black' , marginLeft:'5px'}}>Wishlist</div>
               </a>
             </div>
             
             {
               isLogined ? <div className="profileBlock">
                             <a style={{display:'flex' , alignItems:'center' , textDecoration:'none'}} className="profileButton">
-                              <svg style={{width:'40px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <svg style={{width:'35px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g clipPath="url(#clip0)">
                                   <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
                                     stroke="black" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"
@@ -237,10 +242,11 @@ function Header() {
                               </svg>
                               <div className='dropDown'>
                                 <div style={{display:'flex' , gap:'8px'}}>
-                                  <div>{Name}</div>
+                                  <div className='profileName'>{Name}</div>
                                   <div className='menuSymbol'>&#10095;</div>
                                 </div>
                                 <div className='dropDownContent'>
+                                    <div className='profileNameIndropDown'>{Name}</div>
                                     <button onClick={() => navigate('/Orders')}>My Orders</button>
                                     <button onClick={() => handleSignOut()} >SignOut</button>
                                 </div>
@@ -251,7 +257,7 @@ function Header() {
 
                         <div className="profileBlock">
                             <a style={{display:'flex' , alignItems:'center' , textDecoration:'none'}} className="profileButton" href='/LoginSignUp'>
-                              <svg style={{width:'40px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                              <svg style={{width:'35px'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <g clipPath="url(#clip0)">
                                   <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z"
                                     stroke="black" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"
@@ -269,7 +275,7 @@ function Header() {
                                   </clipPath>
                                 </defs>
                               </svg>
-                              <div onClick={() => navigate('/LoginSignUp')} style={{fontSize:'17px' , marginLeft:'5px' , color:'black'}}>Login/SignUp</div>
+                              <div onClick={() => navigate('/LoginSignUp')}  className='profileName' style={{fontSize:'17px' , marginLeft:'5px' , color:'black'}}>Login/SignUp</div>
                             </a>
                         </div>
             }  
