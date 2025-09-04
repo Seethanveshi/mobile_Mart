@@ -161,7 +161,7 @@ function Home() {
                     {
                         newArrivals?.map((product , ind) => (
                             <a key={ind} className='singleProduct' href={`/Mobile/${product.$id}`} target='_blank'>
-                                <div>
+                                <div className='SingleProductIma'>
                                     <img src={product.ImageUrl} alt={product.Name} />
                                 </div>
                                 <div>{product.Name}</div>
@@ -189,7 +189,7 @@ function Home() {
                     {
                         flagShips?.map((product , ind) => (
                             <a key={ind} className='singleProduct' href={`/Mobile/${product.$id}`} target='_blank'>
-                                <div style={{height:'220px'}}>
+                                <div className='SingleProductIma'>
                                     <img src={product.ImageUrl} alt={product.Name} />
                                 </div>
                                 <div>{product.Name}</div>
@@ -216,7 +216,7 @@ function Home() {
                     {
                         midRanges?.map((product , ind) => (
                             <a key={ind} className='singleProduct' href={`/Mobile/${product.$id}`} target='_blank'>
-                                <div style={{height:'220px'}}>
+                                <div className='SingleProductIma'>
                                     <img src={product.ImageUrl} alt={product.Name} />
                                 </div>
                                 <div>{product.Name}</div>
@@ -243,7 +243,7 @@ function Home() {
                     {
                         budgets?.map((product , ind) => (
                             <a key={ind} className='singleProduct' href={`/Mobile/${product.$id}`} target='_blank'>
-                                <div style={{height:'220px'}}>
+                                <div className='SingleProductIma'>
                                     <img src={product.ImageUrl} alt={product.Name} />
                                 </div>
                                 <div>{product.Name}</div>

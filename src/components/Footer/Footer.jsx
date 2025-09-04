@@ -1,8 +1,9 @@
 import React from 'react'
+import '../../CSS/Footer.css'
 
 function Footer() {
   return (
-    <div style={{backgroundColor:'rgb(37, 35, 35)'}}>
+    <div className='FooterBlock' style={{backgroundColor:'rgb(37, 35, 35)'}}>
         <div style={{display:'flex' , justifyContent:'space-around' , height:'20rem' , alignItems:'center'}}>
             <div style={{display:'flex' , flexDirection:'column' , alignItems:'center'}}>
                 <div style={{color:'grey' , margin:'1rem'}}>ABOUT</div>
