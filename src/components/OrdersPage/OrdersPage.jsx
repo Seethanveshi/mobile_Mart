@@ -42,7 +42,7 @@ function OrdersPage() {
                                             <div className='PriceandQuantity'>
                                                 <div>&#8377;{mobile.Price.toLocaleString('en-IN')}</div>
                                                 <div style={{fontWeight:'normal'}}> | Qty : </div>
-                                                <div style={{fontSize:'18px' , fontWeight:'normal'}}>{mobile.Quantity}</div>
+                                                <div style={{fontSize:'14px' , fontWeight:'normal'}}>{mobile.Quantity}</div>
                                             </div>
                                         </div>
                                         <div className='DeliveryDate'>

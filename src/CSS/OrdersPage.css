@@ -125,8 +125,16 @@
         height: 200px;
     }
     .DeliveryDate{
-        font-size: 14px;
-        width: 150px;
+        font-size: 12px;
+        width: 100px;
         text-align: center;
+    }
+
+    .OrderedItemDetails{
+        gap:5px;
+        font-size:14px;
+    }
+    .AddressSection{
+        font-size:12px;
     }
 }
