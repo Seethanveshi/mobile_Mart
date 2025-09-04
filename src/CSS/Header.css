@@ -91,7 +91,7 @@ input{
     height:45px;
     border:none;
     border-radius: 18px;
-    padding:5px 15px;
+    padding:5px 35px 5px 15px; 
     background-color:white;
     box-shadow: 0px 0px 5px rgba(0 , 0 , 0 , 0.5);
     font-size:16px;
@@ -115,6 +115,15 @@ input{
 
 .wishListBlock{
     display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.wishlistButton{
+    display: flex;
+    width:100%;
+    align-items:center;
+    text-decoration:none;
 }
 
 .cartToggle{
@@ -252,4 +261,11 @@ input{
     right: 0;
     left: auto;
   }
+  
+}
+
+@media (max-width:500px){
+    .Hide{
+        display: none;
+    }
 }

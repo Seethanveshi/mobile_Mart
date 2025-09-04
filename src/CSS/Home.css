@@ -54,6 +54,13 @@ img{
     padding-bottom: 15px;
 }
 
+.categoryHeading{
+    display:flex;
+    padding:20px;
+    font-size:24px;
+    font-weight:bold;
+}
+
 .products{
     position:relative;
     overflow:hidden;
@@ -125,8 +132,26 @@ img{
     }
     .grid{
         margin-left: 45px;
-        width: 60px;
-        height: 70px;
+        width: 55px;
+        height: 55px;
+    }
+    .mobileToolKit{
+        font-size: 14px;
+    }
+    .singleProduct{
+        min-width: 130px;
+        min-height: 150px;
+        padding: 20px 5px;
+        margin: 0.5rem;
+        font-size: 14px;
+        
+    }
+    .SingleProductIma{
+        width: 100px;
+        height: 100px;
+    }
+    .categoryHeading{
+        font-size: 20px;
     }
     
 }

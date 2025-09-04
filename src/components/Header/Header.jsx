@@ -25,6 +25,7 @@ function Header() {
   const [Name , setName] = useState('');
   const [cartLength , setCartLength] = useState(0);
   const [cartItems , setCartItems] = useState([]);
+  const [searchFocus , setSearchFocus] = useState(false);
 
   const searchRef = useRef(null);
 
@@ -148,6 +149,8 @@ function Header() {
                         handleSearchQuery(query);
                       }
                     }}
+                    onFocus={() => setSearchFocus(true)}
+                    onBlur={() => setSearchFocus(false)}
                     placeholder="Search"
                     />
                     <div className='searchButtonBlock'>
@@ -182,7 +185,7 @@ function Header() {
          
           <li className="NavItemEnd">
 
-            <div style={{ position:'relative' , alignItems:'center'}} className="cartBlock">
+            <div style={{ position:'relative' , alignItems:'center'}} className={`cartBlock ${searchFocus ? 'Hide' : ''}`}>
               <a style={{display:'flex' , alignItems:'center'  , color:'black' , textDecoration:'none'}} className="cartButton" href="/Cart">
                 <svg style = {{width:"30px"}} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.25 17.25H6.54545L3.93015 2.86584C3.89873 2.69303 3.80766 2.53673 3.67281 2.42419C3.53796 2.31164 3.36789 2.25 3.19225 2.25H1.5"
@@ -203,8 +206,8 @@ function Header() {
               <div className='cartToggle'>{cartLength}</div>
             </div>
 
-            <div style={{ display:'flex' , justifyContent:"center" ,  alignItems:'center'}} className="wishListBlock">
-              <a onClick={handleWishlist} style={{display:'flex' , width:'100%' , alignItems:'center' , textDecoration:'none'}} className="wishlistButton">
+            <div className= {`wishListBlock ${searchFocus ? 'Hide' : ''}`}>
+              <a onClick={handleWishlist} className="wishlistButton">
                 <svg style={{width:'25px'}} xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 16">
                   <path
                       d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z"

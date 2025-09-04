@@ -154,7 +154,7 @@ function Home() {
 
 
         <div className='categoryBlock'>
-            <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>New Arrival Mobiles</div>
+            <div className='categoryHeading'>New Arrival Mobiles</div>
             <div className='products'>
                 <div
                     style={{display:'flex' , transform:`translateX(${newArrivalTranslate}%)` , transition : 'transform 0.2s linear'}}>
@@ -182,7 +182,7 @@ function Home() {
 
 
         <div className='categoryBlock'>
-            <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>FlagShip Mobiles</div>
+            <div className='categoryHeading'>FlagShip Mobiles</div>
             <div className='products'>
                 <div
                     style={{display:'flex' , transform:`translateX(${flagShipTranslate}%)` , transition : 'transform 0.2s linear'}}>
@@ -209,7 +209,7 @@ function Home() {
         </div>
 
         <div className='categoryBlock'>
-            <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>MidRange Mobiles</div>
+            <div className='categoryHeading'>MidRange Mobiles</div>
             <div className='products'>
                 <div
                     style={{display:'flex' , transform:`translateX(${midRangeTranslate}%)` , transition : 'transform 0.2s linear'}}>
@@ -236,7 +236,7 @@ function Home() {
         </div>
 
         <div className='categoryBlock'>
-            <div style={{display:'flex' , padding:'20px' , fontSize:'24px' , fontWeight:'bold'}}>Budget Mobiles</div>
+            <div className='categoryHeading'>Budget Mobiles</div>
             <div className='products'>
                 <div
                     style={{display:'flex' , transform:`translateX(${budgetTranslate}%)` , transition : 'transform 0.2s linear'}}>
