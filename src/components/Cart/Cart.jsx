@@ -5,6 +5,7 @@ import databaseService from '../../Database/Database';
 import '../../CSS/OrderSummary.css'
 import { useNavigate } from 'react-router-dom';
 import { setCartItemsRedux , setGuestCartItemsRedux } from '../../ReduxtoolKit/Slice/cartRedux';
+import '../../CSS/Cart.css'
 
 function Cart() {
 
@@ -98,95 +99,113 @@ function Cart() {
     } , [cartItems]);
 
     return (
-        <div  style={{padding:'5.3rem 10% 0rem 10%' , height:'100vh'}}>
+        <div className='cartPage'>
         {
             cartItems?.length<=0 ? 
                 <div style={{display:'flex' , flexDirection:'column' , alignItems:'center' , justifyContent:'center' , gap:'10px'}}>
-                    <div style={{width:'350px' , height:'350px'}}>
+                    <div className='emptycartImage'>
                         <img src="https://nyc.cloud.appwrite.io/v1/storage/buckets/6891ab870006c0711f88/files/68a8443c00356cdb3dfd/view?project=6891a8f2001fdab5d3e5&mode=admin" />
                     </div>
-                    <div>
+                    <div className='emptyCartStatement'>
                         <div>There is nothing in your Cart. Let's add some items</div>
                     </div>
                     <div style={{marginTop:'20px'}}>
                         <a href="/Home">
-                            <button style={{padding:'15px 40px' , background:'none' , borderRadius:'10px' , color:'green' , border:'1px solid green' , fontWeight:'bold'}} >Home Page</button>
+                            <button className='homeButton' >Home Page</button>
                         </a>
                     </div>
                 </div>
             :
 
-                <div style={{display:'flex' , justifyContent:'space-between' , gap:'15px'}}>
-                    <div style={{width:'68%'}}>
-                        <div style={{display:'flex' , flexDirection:'column' , gap:'4%' , width:'100%' , height:'220px'}}>
+                <div className='cartBlock'>
+                    <div className='cartItemsSection'>
+                        <div className='cartItems'>
                             {
                             cartItems?.map((mobile , ind) => (
-                                <div key={mobile.$id || ind} style={{display:'flex' , width:'100%' , height:'100%' , backgroundColor:'white' , padding:'2%' , gap:'3rem' , boxSizing:'border-box' , border:'1px solid grey'}}>
-                                <div>
-                                    <img src={mobile.ImageUrl} alt={mobile.Name} />
-                                </div>
-                                <div style={{display:'flex' , flexDirection:'column' , textAlign:'start' , gap:'10px' , fontSize:'20px' , fontWeight:'bold' }}>
-                                    <div>{mobile.Name}</div>
-                                    <div  style={{display:'flex' , margin:'5px 0' , fontWeight:'bold' , fontSize:'18px' , backgroundColor:'green' , width:'45px' , color:'white' , gap:'3px'}}>
-                                        <div style={{marginLeft:'3px'}}>{mobile.Rating}</div>
-                                        <span style={{display:'flex' , alignItems:'center'}}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="1" style={{marginTop:'8px'}}><path fill="#FFF" d="M6.5 9.439l-3.674 2.23.94-4.26-3.21-2.883 4.254-.404L6.5.112l1.69 4.01 4.254.404-3.21 2.882.94 4.26z"/></svg></span>
+                                <div className='cartItemDetailsBlock' key={mobile.$id || ind}>
+                                    <div className='ImageBlock'>
+                                        <img src={mobile.ImageUrl} alt={mobile.Name} />
                                     </div>
-                                    <div style={{display:'flex' , gap:'5px' , fontSize:'19px'}}>
-                                    <div>&#8377;{mobile.Price?.toLocaleString('en-IN')}</div>
-                                    <div style={{color:'grey' , textDecorationLine:'line-through'}} >&#8377;{mobile.MRP?.toLocaleString('en-IN')}</div>
-                                    <div style={{color:'green'}} >{(((mobile.MRP-mobile.Price)/mobile.MRP)*100).toFixed(2)}%</div>
+                                    <div className='cartItemDetails'>
+                                        <div className='DetailsandDeliveryDate'>
+                                            <div>
+                                                <div>{mobile.Name}</div>
+                                                <div className='Rating'>
+                                                    <div style={{marginLeft:'3px'}}>{mobile.Rating}</div>
+                                                    <span style={{display:'flex' , alignItems:'center'}}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="1" style={{marginTop:'8px'}}><path fill="#FFF" d="M6.5 9.439l-3.674 2.23.94-4.26-3.21-2.883 4.254-.404L6.5.112l1.69 4.01 4.254.404-3.21 2.882.94 4.26z"/></svg></span>
+                                                </div>
+                                            </div>
+                                            <div className='deliveryDate'>
+                                                {mobile.deliveryDate}
+                                            </div>
+                                        </div>
+                                        <div className='priceDetails'>
+                                            <div>&#8377;{mobile.Price?.toLocaleString('en-IN')}</div>
+                                            <div style={{color:'grey' , textDecorationLine:'line-through'}} >&#8377;{mobile.MRP?.toLocaleString('en-IN')}</div>
+                                            <div style={{color:'green'}} >{(((mobile.MRP-mobile.Price)/mobile.MRP)*100).toFixed(2)}%</div>
+                                        </div>
+                                        <div className='quantityDetails'>
+                                            <div className='quantityName'>Qty : </div>
+                                            <button className='minusButton' onClick={() => {qtyHandler(-1 , mobile)}} >-</button>
+                                            <div className='Quantity' >{mobile.Quantity}</div>
+                                            <button className='plusButton' onClick={() => {qtyHandler(1 , mobile)}} >+</button>
+                                            <button className='removeButton' onClick={() => {RemoveHandler(mobile.$id)}}>Remove</button>
+                                        </div>
                                     </div>
-                                    <div style={{display:'flex' , gap:'10px' , alignItems:'center'}}>
-                                    <div style={{fontWeight:'normal' , fontSize:'18px'}}>Qty : </div>
-                                    <button onClick={() => {qtyHandler(-1 , mobile)}} style={{border:'1px solid black' , borderRadius:'50%' , padding:'3px 10px' , fontSize:'20px' , textAlign:'justify' , background:'none'}}>-</button>
-                                    <div style={{fontSize:'18px'}}>{mobile.Quantity}</div>
-                                    <button onClick={() => {qtyHandler(1 , mobile)}} style={{border:'1px solid black' , borderRadius:'50%' , padding:'5px 10px' , fontSize:'16px' , background:'none'}}>+</button>
-                                    <button onClick={() => {RemoveHandler(mobile.$id)}} style={{background:'none' , border:'none' , fontSize:'16px'}}>Remove</button>
-                                    </div>
-                                </div>
-                                <div style={{ marginLeft:'auto'}}>
-                                    {mobile.deliveryDate}
-                                </div>
                                 </div>
                             ))
                             }
                         </div>
                     </div>
-                    <div style={{width:'35%' , position:'sticky' , left:'65%'}}>
-                        <div style={{backgroundColor:'white'}}>
-                            <div style={{display:'flex' , flexDirection:'column' , gap:'15px' , padding:'20px 20px 30px 20px'}}>
-                                <div style={{fontWeight:'bold' , borderBottom:'1px solid black'}}>
+                    <div className="orderSummarySection">
+                        <div className="orderSummary">
+                            <div className="orderSummaryContent">
+                                <div className="priceDetailsTitle">
                                     PRICE DETAILS ({cartItems?.length} Items)
                                 </div>
-                                <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
+
+                                <div className="priceRow">
                                     <div>Total MRP</div>
                                     <div>&#8377;{totalMRP?.toLocaleString('en-IN')}</div>
                                 </div>
-                                <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
+
+                                <div className="priceRow">
                                     <div>Discount on MRP</div>
-                                    <div style={{color:'green'}}>-&#8377;{discount?.toLocaleString('en-IN')}</div>
+                                    <div className="discountOnMRP">-&#8377;{discount?.toLocaleString('en-IN')}</div>
                                 </div>
-                                <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
+
+                                <div className="priceRow">
                                     <div>Platform Fee</div>
-                                    <div style={{color:'green' , fontSize:'12px'}}>FREE</div>
+                                    <div className="platformFee">FREE</div>
                                 </div>
-                                <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
+
+                                <div className="priceRow">
                                     <div>Shipping Fee</div>
-                                    <div style={{display:'flex'}}>
-                                        <div style={{textDecorationLine:'line-through' , fontSize:'12px'}}>&#8377;79</div>
-                                        <span style={{color:'green' , fontSize:'12px '}}>FREE</span>
+                                    <div className="shippingFee">
+                                        <div className="lineThroughSmall">&#8377;79</div>
+                                        <span className="shippingFee">FREE</span>
                                     </div>
                                 </div>
-                                <div style={{display:'flex' , justifyContent:'space-between' , borderStyle:'dashed none' , padding:'10px 0px' , fontWeight:'bold' , fontSize:'18px' , borderWidth:'1px'}}>
+
+                                <div className="totalAmountRow">
                                     <div>Total Amount</div>
                                     <div>&#8377;{totalAmount?.toLocaleString('en-IN')}</div>
                                 </div>
+
                                 <div>
-                                    <button onClick={() => reduxData.status ? navigate('/Address') : navigate('/LoginSignUp')} className='placeOrderButton' >PLACE ORDER</button> 
+                                    <button
+                                        onClick={() =>
+                                            reduxData.status ? navigate('/Address') : navigate('/LoginSignUp')
+                                        }
+                                        className="placeOrderButton"
+                                        >
+                                        PLACE ORDER
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
         }
         </div>

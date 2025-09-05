@@ -1,3 +1,55 @@
+.orderSummary{
+  background-color: white;
+}
+
+.orderSummaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 20px 30px 20px;
+}
+
+.priceDetailsTitle {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.discountOnMRP {
+  color: green;
+}
+
+.platformFee , .shippingFee{
+  color: green;
+  font-size: 12px;
+}
+
+.shippingFee {
+  display: flex;
+  gap: 5px;
+}
+
+.lineThroughSmall {
+  text-decoration-line: line-through;
+  font-size: 12px;
+}
+
+.totalAmountRow {
+  display: flex;
+  justify-content: space-between;
+  border-style: dashed none;
+  padding: 10px 0px;
+  font-weight: bold;
+  font-size: 18px;
+  border-width: 1px;
+}
+
+
 .placeOrderButton{
     width:100%;
     padding:15px;
@@ -11,4 +63,38 @@
 
 .placeOrderButton:hover{
     box-shadow:0px 0px 6px black;
+}
+
+@media(max-width:700px){
+    .totalAmountRow {
+        font-size: 17px;
+    }
+
+    .placeOrderButton{
+        font-size:14px;
+    }
+}
+
+@media(max-width:350px){
+
+    .priceDetailsTitle {
+        font-size: 14px;
+    }
+
+    .priceRow {
+        font-size: 14px;
+    }
+
+    .platformFee , .shippingFee{
+        font-size: 10px;
+    }
+
+    .totalAmountRow {
+        font-size: 16px;
+    }
+
+
+    .placeOrderButton{
+        font-size:14px;
+    }
 }
