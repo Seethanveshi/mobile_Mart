@@ -68,57 +68,76 @@ function PaymentPage() {
 
   return (
 
-    <div style={{padding:'5.3rem 10% 5rem 20%' , backgroundColor:'white' , height:'100%'}}>
-        <div style={{display:'flex' , flexDirection:'row' , alignItems:'start' , gap:'10px'}}>
-            <div style={{display:'flex' , width:'50%', border:'1px solid black' , alignItems:'center' , height:'50px' , padding:'20px 10px' , gap:'5px'}}>
-                <input style={{width:'15px' , height:'15px' , margin:'0px' , textAlign:'center'}} 
-                       id ="cashOndelivery" 
-                       type="radio" 
-                       value='CashOnDelivery'
-                       onChange={(e) => setSelected(e.target.value)}
-                       checked = {selected=='CashOnDelivery'}
-                />
-                <label style={{fontSize:'18px' , color:'green' , marginTop:'1px'}} htmlFor='cashOndelivery'>Cash on Delivery</label>
+    <div className="paymentPage">
+        <div className="paymentPageWrapper">
+            <div className="paymentOptions">
+            <input
+                className="radioInput"
+                id="cashOndelivery"
+                type="radio"
+                value="CashOnDelivery"
+                onChange={(e) => setSelected(e.target.value)}
+                checked={selected === "CashOnDelivery"}
+            />
+            <label className="radioLabel" htmlFor="cashOndelivery">
+                Cash on Delivery
+            </label>
             </div>
-            <div style={{width:'35%' , padding:'0px' , border:'1px solid black'}}>
-                <div>
-                    <div style={{backgroundColor:'white'}}>
-                        <div style={{display:'flex' , flexDirection:'column' , gap:'15px' , padding:'20px 20px 30px 20px'}}>
-                            <div style={{fontWeight:'bold' , borderBottom:'1px solid black'}}>
-                                PRICE DETAILS ({cartItems.length} Items)
-                            </div>
-                            <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
-                                <div>Total MRP</div>
-                                <div>&#8377;{totalMRP.toLocaleString('en-IN')}</div>
-                            </div>
-                            <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
-                                <div>Discount on MRP</div>
-                                <div style={{color:'green'}}>-&#8377;{discount.toLocaleString('en-IN')}</div>
-                            </div>
-                            <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
-                                <div>Platform Fee</div>
-                                <div style={{color:'green' , fontSize:'12px'}}>FREE</div>
-                            </div>
-                            <div style={{display:'flex' , alignItems:'center' , justifyContent:'space-between'}}>
-                                <div>Shipping Fee</div>
-                                <div style={{display:'flex'}}>
-                                    <div style={{textDecorationLine:'line-through' , fontSize:'12px'}}>&#8377;79</div>
-                                    <span style={{color:'green' , fontSize:'12px '}}>FREE</span>
-                                </div>
-                            </div>
-                            <div style={{display:'flex' , justifyContent:'space-between' , borderStyle:'dashed none' , padding:'10px 0px' , fontWeight:'bold' , fontSize:'18px' , borderWidth:'1px'}}>
-                                <div>Total Amount</div>
-                                <div>&#8377;{totalAmount.toLocaleString('en-IN')}</div>
-                            </div>
-                            <div className={`${selected==='CashOnDelivery' ? 'active' : 'Inactive'}`}>
-                                <button onClick={() => {OrderPlaced()}} className={`OrderSummaryButton ${selected==='CashOnDelivery' ? 'active' : ''}`}>PLACE ORDER</button> 
+
+            <div className="orderSummarySectionPaymentPage">
+                <div className="orderSummary">
+                    <div className="orderSummaryContent">
+                        <div className="priceDetailsTitle">
+                            PRICE DETAILS ({cartItems?.length} Items)
+                        </div>
+
+                        <div className="priceRow">
+                            <div>Total MRP</div>
+                            <div>&#8377;{totalMRP?.toLocaleString('en-IN')}</div>
+                        </div>
+
+                        <div className="priceRow">
+                            <div>Discount on MRP</div>
+                            <div className="discountOnMRP">-&#8377;{discount?.toLocaleString('en-IN')}</div>
+                        </div>
+
+                        <div className="priceRow">
+                            <div>Platform Fee</div>
+                            <div className="platformFee">FREE</div>
+                        </div>
+
+                        <div className="priceRow">
+                            <div>Shipping Fee</div>
+                            <div className="shippingFee">
+                                <div className="lineThroughSmall">&#8377;79</div>
+                                <span className="shippingFee">FREE</span>
                             </div>
                         </div>
+
+                        <div className="totalAmountRow">
+                            <div>Total Amount</div>
+                            <div>&#8377;{totalAmount?.toLocaleString('en-IN')}</div>
+                        </div>
+
+                        <div className={selected === "CashOnDelivery" ? "active" : "Inactive"}>
+                            <button
+                                onClick={() => {
+                                    OrderPlaced();
+                                }}
+                                className={`placeOrderButton ${
+                                    selected === "CashOnDelivery" ? "active" : ""
+                                }`}
+                                >
+                                PLACE ORDER
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
   )
 }
 

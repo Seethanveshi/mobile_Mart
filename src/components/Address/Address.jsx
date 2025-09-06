@@ -71,84 +71,86 @@ function Address() {
     }
 
     return (
-        <div style={{padding:'5.3rem 20% 5rem 20%' , backgroundColor:'white' , height:'100%'}}>
+        <div className="addressPage">
             <div>
-                <div style={{display:'flex' , flexDirection:'column' , justifyContent:'center' , alignItems:'center' , width:'100%' , gap:'10px'}}>
-                    <div style={{width:'60%'}}>
-                        <div style={{display:'flex' , flexDirection:'column' , gap:'10px'}}>
+                <div className="addressSection">
+                <div className="addressListWrapper">
+                    <div className="addressList">
+                    {
+                        savedAddress?.map((add, ind) => (
+                        <div className="addressCard" key={ind}>
+                            <div className="addressRadioGroup">
+                            <input
+                                className="addressRadio"
+                                id={`address-${ind}`}
+                                type="radio"
+                                name="address"
+                                value={add.$id}
+                                checked={selectedAddress === add.$id}
+                                onChange={(e) => setSelectedAddress(e.target.value)}
+                            />
+                            <label htmlFor={`address-${ind}`} className="addressLabel">
+                                <div className="addressName">{add.Name} | {add.MobileNumber}</div>
+                                <div className="addressDetails">
+                                {add.Address}, {add.LandMark}, {add.City}, {add.District}, {add.State}, India, {add.Pincode}
+                                </div>
+                            </label>
+                            <button onClick={() => deleteAddress(add.$id)} className="deleteButton">Delete</button>
+                            </div>
+                            <div className={`deliveryButton ${selectedAddress === add.$id ? 'active' : ''}`}>
+                                <button onClick={() => deliveryAddress(add)} className="deliveryHereButton">Delivery Here</button>
+                            </div>
+                        </div>
+                        ))
+                    }
+                    </div>
+                </div>
+                <form className="addressForm" onSubmit={addressHandler}>
+                    <div className="formContent">
+                        <div className='newAddressName'>NEW ADDRESS</div>
+                        <div className="sectionTitle">Contact Details</div>
+                        <div className="inputGroup">
+                            <InputBox value={Name} onValueChange={setName} type="text" className="InputField" placeHolder="Full Name*" />
+                            <InputBox value={Number} onValueChange={setNumber} type="number" className="InputField" placeHolder="Mobile Number*" />
+                        </div>
+                        <div className="sectionTitle">Address</div>
+                        <div className="textareaWrapper">
+                            <textarea className="InputField textarea" value={Address} onChange={(e) => setAddress(e.target.value)} placeholder="HOUSE No, Building Name, Street"></textarea>
+                        </div>
+                        <div className="inputGroup">
+                            <InputBox value={City} onValueChange={setCity} type="text" className="InputField" placeHolder="Town/City*" />
+                            <InputBox value={LandMark} onValueChange={setLandMark} type="text" className="InputField" placeHolder="LandMark*" />
+                        </div>
+                        <div className="dropdownGroup">
+                            <select name="states" className="InputField" onChange={(e) => { setState(e.target.value), setDistrict('') }} required>
+                            <option value="">Select State</option>
                             {
-                                savedAddress?.map((add , ind) => (
-                                    <div style={{display:'flex' , flexDirection:'column' , border:'1px solid black' , padding:'15px 20px'}} key={ind}>
-                                        <div style={{display:'flex'}}>
-                                            <input  style={{display:'flex' , width:'15px' , height:'20px' ,margin:'0px'}}
-                                                id={`address-${ind}`}
-                                                type="radio"
-                                                name="address"
-                                                value={add.$id}
-                                                checked={selectedAddress === add.$id}
-                                                onChange={(e) => setSelectedAddress(e.target.value)} 
-                                            />
-                                            <label htmlFor={`address-${ind}`}> 
-                                                <div style={{display:'flex' , marginLeft:'8px' , width:'250px' , maxWidth:'100%'}}>{add.Name} | {add.MobileNumber}</div>
-                                                <div style={{display:'flex' , color:'grey' , textAlign:'start' , margin:'5px 0px 0px 8px '}}>
-                                                    {add.Address}, {add.LandMark}, {add.City}, {add.District}, {add.State}, India, {add.Pincode}
-                                                </div>
-                                            </label>
-                                            <button onClick={() => deleteAddress(add.$id)} style={{display:'flex' , border:'none' , background:'none' , height:'20px'}}>Delete</button>
-                                        </div>
-                                        <div className={`deliveryButton ${selectedAddress === add.$id ? 'active' : ''}`}>
-                                            <button onClick={() => deliveryAddress(add)} style={{display:'flex' ,padding:'15px 10px' , backgroundColor:'green' , border:'none' , color:'white' , borderRadius:'5px'}}>Delivery Here</button>
-                                        </div>
-                                    </div>
+                                states.map((st) => (
+                                <option key={st} value={st}>{st}</option>
                                 ))
                             }
+                            </select>
+                            <select name="districts" className="InputField" disabled={!State} onChange={(e) => setDistrict(e.target.value)} required>
+                            <option value="">Select District</option>
+                            {
+                                states_districts[State]?.map((dis) => (
+                                <option key={dis} value={dis}>{dis}</option>
+                                ))
+                            }
+                            </select>
+                        </div>
+                        <div className="pincodeWrapper">
+                            <InputBox value={PinCode} onValueChange={setPinCode} type="number" className="InputField" placeHolder="PinCode*" />
+                        </div>
+                        <div>
+                            <button className="submitButton" type="submit">Submit</button>
                         </div>
                     </div>
-                    <form style={{width:'60%'}} onSubmit={addressHandler}>
-                        <div style={{display:'flex' , flexDirection:'column' , alignItems:'center' , gap:'10px' , width:'100%' , border:'1px solid black' , padding:'15px', boxSizing:'border-box'}}>
-                            <div>NEW ADDRESS</div>
-                            <div style={{fontSize:'16px'}}>Contact Details</div>
-                            <div style={{display:'flex' , flexDirection:'column' , gap:'8px' , width:'80%' , justifyContent:'center'}}>
-                                <InputBox value={Name} onValueChange={setName} type="text" className = 'InputField' placeHolder='Full Name*' />
-                                <InputBox value={Number} onValueChange={setNumber} type="number" className = 'InputField' placeHolder='Mobile Number*' />
-                            </div>
-                            <div style={{fontSize:'18px'}}>Address</div>
-                            <div style={{width:'80%'}}>
-                                <textarea style={{fontSize:'16px'}} className='InputField' value={Address} onChange={(e) => setAddress(e.target.value)} placeholder='HOUSE No, Building Name, Street'></textarea>
-                            </div>
-                            <div style={{display:'flex' , flexDirection:'column' , gap:'8px' , width:'80%'}}>
-                                <InputBox value={City} onValueChange={setCity} type="text" className = 'InputField' placeHolder='Town/City*' />
-                                <InputBox value={LandMark} onValueChange={setLandMark} type="text" className = 'InputField' placeHolder='LandMark*' />
-                            </div>
-                            <div style={{display:'flex' , justifyContent:'center' , gap:'8px' , width:'80%'}}>
-                                <select name="states" className='InputField' onChange={(e) => {setState(e.target.value) , setDistrict('')}} required>
-                                    <option value="">Select State</option>
-                                    {
-                                        states.map((st) => (
-                                            <option key={st} value={st}>{st}</option>
-                                        ))
-                                    }
-                                </select>
-                                <select name="districts" className='InputField' disabled={!State} onChange={(e) => setDistrict(e.target.value)} required>
-                                    <option value="">Select District</option>
-                                    {
-                                        states_districts[State]?.map((dis) => (
-                                            <option key={dis} value={dis}>{dis}</option>
-                                        ))
-                                    }
-                                </select>
-                            </div>
-                            <div style={{width:'80%'}}>
-                                <InputBox value={PinCode} onValueChange={setPinCode} type="number" className = 'InputField' placeHolder='PinCode*' />
-                            </div>
-                            <div>
-                                <button style={{backgroundColor:'green' , color:'white' , border:'none' , padding:'15px 20px' , fontSize:'16px' , fontWeight:'bold' , borderRadius:'5px'}} type='submit'>Submit</button>
-                            </div>
-                        </div>
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
+
     )
 }
 

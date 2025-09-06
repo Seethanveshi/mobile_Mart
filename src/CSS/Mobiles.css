@@ -107,6 +107,7 @@ a{
 
     .mobileRating {
         font-size: 18px;
+        width: 45px;
     }
 
     .ratingStar {
@@ -163,7 +164,7 @@ a{
 
     .mobileRating {
         font-size: 1px;
-        width: 40px;
+        width: 42px;
     }
 
     .ratingStar {
