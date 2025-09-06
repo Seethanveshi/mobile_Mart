@@ -59,6 +59,10 @@
     gap:3px;
 }
 
+.starSymbol{
+    margin-top: 8px;
+}
+
 .priceDetails{
     display:flex;
     gap:5px;
@@ -204,12 +208,12 @@
     }
 }
 
-@media(max-width:350px){
+@media(max-width:400px){
     .cartBlock{
         flex-direction: column;
     }
     .cartPage{
-        padding:5.3rem 1% 0rem 1%;
+        padding:5rem 1% 0rem 1%;
     }
 
     .ImageBlock{
@@ -219,15 +223,20 @@
 
     .cartItemDetails{
         gap:5px;
-        font-size:14px;
+        font-size:12px;
     }
 
     .Rating{
-        font-size:14px;
+        font-size:12px;
+        width: 43px;
+    }
+
+    .starSymbol{
+        margin-top: 1px;
     }
 
     .priceDetails{
-        font-size:15px;
+        font-size:13px;
     }
 
     .quantityDetails{
@@ -235,7 +244,7 @@
     }
 
     .deliveryDate{
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .quantityName{

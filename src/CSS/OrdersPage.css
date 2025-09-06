@@ -41,6 +41,10 @@
     gap:3px;
 }
 
+.starImage{
+    margin-top: 8px;
+}
+
 .PriceandQuantity{
     display:flex;
     gap:5px;
@@ -136,5 +140,18 @@
     }
     .AddressSection{
         font-size:12px;
+    }
+}
+
+
+@media(max-width:400px){
+    .Rating{
+        display:flex;
+        margin:5px 0;
+        width:43px;
+
+    }
+    .starImage{
+        margin-top: 2px;
     }
 }

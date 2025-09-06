@@ -25,6 +25,7 @@ input{
 .paymentOptions{
   display: flex;
   width: 50%;
+  flex:1.2;
   border: 1px solid black;
   align-items: center;
   height: 50px;
@@ -155,6 +156,14 @@ input{
 @media (max-width:450px){
     .paymentPage{
         padding: 5rem 2% 5rem 2%;
+    }
+
+    .paymentOptions{
+        width: 98%;
+    }
+
+    .orderSummarySectionPaymentPage{
+        width: 98%;
     }
 
     .radioInput {
