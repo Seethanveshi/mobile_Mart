@@ -1,0 +1,658 @@
+.singleMobilePage {
+  padding: 4.8rem 5% 0 5%;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.singleMobileWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  background-color: white;
+  gap: 30px;
+}
+
+.singleMobile_mobileLeftSection {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.singleMobile_mobileLeftSectionImageandButtons{
+    width: 35%;
+    position: fixed;
+}
+
+.singleMobile_mobileImageContainer {
+  position: relative;
+  border: 1px solid grey;
+  height: 470px;
+  margin-left: 15%;
+  box-sizing: border-box;
+  padding: 1rem 3rem;
+}
+
+.singleMobile_wishlistButtonToolkit {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  top: 3%;
+  right: 3%;
+}
+
+.singleMobile_CartandBuyNowButtons {
+  display: flex;
+  margin-left: 15%;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.singleMobile_buyNowButton{
+  flex: 1;
+  padding: 1.2rem;
+  border: none;
+  background-color: rgb(255, 106, 0);
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  transition: box-shadow 0.2s linear , scale 0.2s linear;
+
+}
+
+.singleMobile_buyNowButton:hover{
+    box-shadow: 1px 1px 8px black;
+}
+
+.singleMobile_buyNowButton:active{
+    scale: 0.95;
+}
+
+.singleMobile_addCartButton {
+  flex: 1;
+  padding: 1.2rem;
+  border: none;
+  background-color: rgba(255, 166, 0, 0.926);
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
+  transition: box-shadow 0.2s linear , scale 0.2s linear;
+
+}
+
+.singleMobile_addCartButton:hover{
+    box-shadow: 1px 1px 8px black;
+}
+
+.singleMobile_addCartButton:active{
+    scale: 0.95;
+}
+
+.singleMobile_RightSectionMobileDetails {
+  padding: 0px 15px 15px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 46%;
+}
+
+.singleMobile_RightSectionMobileSpecs {
+  padding: 0px 80px 50px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 41%;
+}
+
+.singleMobile_mobileTitle {
+  display: flex;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.singleMobile_mobileRating{
+  display: flex;
+  margin: 5px 0;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: green;
+  width: 50px;
+  color: white;
+  gap: 3px;
+}
+
+.singleMobile_ratingValue {
+  margin-left: 5px;
+}
+
+.singleMobile_ratingIcon {
+  display: flex;
+  align-items: center;
+}
+
+.singleMobile_starImage {
+  margin-top: 5px;
+}
+
+.singleMobile_mobilePrice {
+  display: flex;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.singleMobile_mobileHighlights {
+  display: flex;
+  gap: 20px;
+  list-style-type:none ;
+}
+
+.singleMobile_highlightTitle {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.singleMobile_highlightList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  gap: 8px;
+  list-style-type: none;
+}
+
+
+.singleMobile_highlightBullet{
+    width: 4px;
+    height: 5px;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.singleMobile_highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.singleMobile_specsTable {
+  border: 1px solid grey;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.singleMobile_specsHeading {
+  border: 1px solid grey;
+  padding: 20px;
+  font-size: 22px;
+  text-align: left;
+}
+
+.singleMobile_specsSubtable {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.singleMobile_specsSubheading {
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.singleMobile_specsKey {
+  text-align: left;
+  padding: 10px;
+  width: 30%;
+}
+
+.singleMobile_specsValue {
+  text-align: left;
+  padding: 10px;
+}
+
+@media(max-width:1000px){
+
+    .singleMobile_mobileLeftSection {
+        display: flex;
+        flex-direction: row;
+        width: 95%;
+    }
+
+    .singleMobile_mobileLeftSectionImageandButtons{
+        width: 35%;
+        position: fixed;
+    }
+
+    .singleMobile_mobileImageContainer {
+        position: relative;
+        border: 1px solid grey;
+        height: 470px;
+        margin-left: 15%;
+        box-sizing: border-box;
+        padding: 1rem 3rem;
+    }
+    .singleMobile_RightSectionMobileDetails {
+        padding: 0px 15px 15px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-left: 45%;
+    }
+
+    .singleMobile_RightSectionMobileSpecs {
+        padding: 0px 40px 50px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-left: 42%;
+    }
+}
+
+@media(max-width:700px){
+    .singleMobilePage {
+        padding: 4.8rem 5% 0 5%;
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+    }
+
+    .singleMobileWrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        background-color: white;
+        gap: 30px;
+    }
+
+    .singleMobile_mobileLeftSection {
+        display: flex;
+        flex-direction: row;
+        width: 95%;
+    }
+
+    .singleMobile_mobileLeftSectionImageandButtons{
+        width: 50%;
+        flex:1;
+        position: relative;
+    }
+
+    .singleMobile_mobileImageContainer {
+        position: relative;
+        border: 1px solid grey;
+        height: 300px;
+        margin-left: 15%;
+        box-sizing: border-box;
+        padding: 1rem 1rem;
+    }
+
+    .singleMobile_RightSectionMobileDetails {
+        padding: 0px 5px 15px 15px;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 2%;
+    }
+
+    .singleMobile_RightSectionMobileSpecs {
+        padding: 0px 40px 50px 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-left: 5%;
+    }
+
+}   
+
+
+@media(max-width:750px){
+    .singleMobilePage {
+        padding: 4.8rem 2% 0 2%;
+    }
+
+    .singleMobileWrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        background-color: white;
+        gap: 15px;
+    }
+
+    .singleMobile_mobileLeftSection {
+        display: flex;
+        flex-direction: row;
+        width: 98%;
+    }
+
+    .singleMobile_mobileLeftSectionImageandButtons{
+        flex:1;
+        position: relative;
+    }
+
+    .singleMobile_mobileImageContainer {
+        height: 220px;
+        margin-left: 10%;
+        padding: 0.5rem 0.1rem;
+    }
+
+    .singleMobile_wishlistButtonToolkit {
+        padding: 5px;
+    }
+
+    .singleMobile_CartandBuyNowButtons {
+        display: flex;
+        margin-left: 10%;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .singleMobile_buyNowButton{
+        padding: 0.8rem 1rem;
+        font-size: 14px;
+    }
+
+    .singleMobile_addCartButton {
+        padding: 0.8rem 1rem;
+        font-size: 14px;
+    }
+
+    .singleMobile_RightSectionMobileDetails {
+        padding: 0px 5px 15px 10px;
+        display: flex;
+        flex: 1;
+        margin-left: 5%;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .singleMobile_RightSectionMobileSpecs {
+        padding: 0px 20px 50px 15px;
+        margin-left: 2%;
+    }
+
+    .singleMobile_mobileTitle {
+        display: flex;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .singleMobile_mobileRating{
+        display: flex;
+        font-size: 16px;
+        width: 46px;
+    }
+
+    .singleMobile_ratingValue {
+        margin-left: 5px;
+    }
+
+    .singleMobile_ratingIcon {
+        display: flex;
+        align-items: center;
+    }
+
+    .singleMobile_starImage {
+        margin-top: 5px;
+    }
+
+    .singleMobile_mobilePrice {
+        display: flex;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .singleMobile_mobileHighlights {
+        align-items: start;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        list-style-type:none ;
+
+    }
+
+    .singleMobile_highlightTitle {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    .singleMobile_highlightList {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        gap: 5px;
+        list-style-type:none ;
+
+    }
+
+    .singleMobile_highlightItem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .singleMobile_highlightBullet{
+        width: 4px;
+        height: 4px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+    .singleMobile_specsTable {
+        border: 1px solid grey;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .singleMobile_specsHeading {
+        border: 1px solid grey;
+        padding: 15px;
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .singleMobile_specsSubtable {
+        width: 100%;
+        border-bottom: 1px solid grey;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .singleMobile_specsSubheading {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .singleMobile_specsKey {
+        font-size: 14px;
+        width: 30%;
+    }
+
+    .singleMobile_specsValue {
+        font-size: 14px;
+    }
+}   
+
+
+
+@media(max-width:500px){
+    .singleMobilePage {
+        padding: 4.8rem 2% 0 2%;
+    }
+
+    .singleMobileWrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        background-color: white;
+        gap: 15px;
+    }
+
+    .singleMobile_mobileLeftSection {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .singleMobile_mobileLeftSectionImageandButtons{
+        flex:1;
+        position: relative;
+        width: 100%;
+    }
+
+    .singleMobile_mobileImageContainer {
+        height: 350px;
+        margin: 0px 5%;
+        padding: 0.2rem 0.1rem;
+    }
+
+    .singleMobile_wishlistButtonToolkit {
+        padding: 5px;
+    }
+
+    .singleMobile_CartandBuyNowButtons {
+        display: flex;
+        margin: 5% 5%;
+        gap: 0.5rem;
+    }
+
+    .singleMobile_buyNowButton{
+        padding: 1rem 1rem;
+        font-size: 14px;
+    }
+
+    .singleMobile_addCartButton {
+        padding: 1rem 1rem;
+        font-size: 14px;
+    }
+
+    .singleMobile_RightSectionMobileDetails {
+        padding: 0px 5px 15px 5px;
+        display: flex;
+        flex: 2;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .singleMobile_RightSectionMobileSpecs {
+        padding: 0px 10px 50px 10px;
+        margin-left: 0%;
+        width: 100%;
+    }
+
+    .singleMobile_mobileTitle {
+        display: flex;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .singleMobile_mobileRating{
+        display: flex;
+        font-size: 14px;
+        min-width: 32px;
+    }
+
+    .singleMobile_ratingValue {
+        margin-left: 5px;
+    }
+
+    .singleMobile_ratingIcon {
+        display: flex;
+        align-items: center;
+    }
+
+    .singleMobile_starImage {
+        margin-top: 5px;
+    }
+
+    .singleMobile_mobilePrice {
+        display: flex;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .singleMobile_mobileHighlights {
+        align-items: start;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        list-style-type:none ;
+
+    }
+
+    .singleMobile_highlightTitle {
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+    .singleMobile_highlightList {
+        display: flex;
+        flex-direction: column;
+        padding-left: 0;
+        gap: 5px;
+        list-style-type:none ;
+    }
+
+    .singleMobile_highlightItem {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .singleMobile_highlightBullet{
+        width: 4px;
+        height: 4px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+    .singleMobile_specsTable {
+        border: 1px solid grey;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .singleMobile_specsHeading {
+        border: 1px solid grey;
+        padding: 15px;
+        font-size: 18px;
+        text-align: left;
+    }
+
+    .singleMobile_specsSubtable {
+        width: 100%;
+        border-bottom: 1px solid grey;
+        border-collapse: collapse;
+        margin: 0;
+    }
+
+    .singleMobile_specsSubheading {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .singleMobile_specsKey {
+        font-size: 12px;
+        width: 30%;
+    }
+
+    .singleMobile_specsValue {
+        font-size: 12px;
+    }
+}   
