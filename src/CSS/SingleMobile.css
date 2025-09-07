@@ -260,7 +260,7 @@
     }
 }
 
-@media(max-width:700px){
+@media(max-width:900px){
     .singleMobilePage {
         padding: 4.8rem 5% 0 5%;
         box-sizing: border-box;
@@ -302,7 +302,7 @@
     .singleMobile_RightSectionMobileDetails {
         padding: 0px 5px 15px 15px;
         display: flex;
-        flex: 1;
+        flex: 1.5;
         flex-direction: column;
         gap: 10px;
         margin-left: 2%;
@@ -319,7 +319,7 @@
 }   
 
 
-@media(max-width:750px){
+@media(max-width:800px){
     .singleMobilePage {
         padding: 4.8rem 2% 0 2%;
     }
@@ -490,7 +490,7 @@
 
 
 
-@media(max-width:500px){
+@media(max-width:580px){
     .singleMobilePage {
         padding: 4.8rem 2% 0 2%;
     }
