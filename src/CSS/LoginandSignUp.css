@@ -1,4 +1,4 @@
-/* #root {
+#root {
   margin: 0;
   max-width: 100%;
   text-align: center;
@@ -22,6 +22,15 @@ input{
     color: black;
 }
 
+
+.loginandSignUppage{
+  box-sizing:border-box;
+  margin-top:5rem;
+  height:89vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
 .Login_Fields , .SignUp_Fields{
   display: flex;
@@ -162,4 +171,56 @@ input{
   transition-timing-function: ease-in-out;
   transition-duration: 1s; 
   z-index: 1;
-} */
+}
+
+
+
+.LoginAndSignUpPage{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position:relative;
+  background-color: white;
+  border-radius:20px;
+  z-index: 1;
+  box-sizing: border-box;
+  display: none;
+}
+
+
+.statement{
+  position: absolute;
+  top:92%;
+  font-size: 16px;
+}
+
+.stateButton{
+  background: none;
+  border: none;
+  color: green;
+  font-size: 15px;
+}
+
+@media(max-width:700px){
+  .Login_SignUp_Page{
+    display: none;
+  }
+
+  .LoginAndSignUpPage{
+    display: flex;
+  }
+  .Login_Form{
+    width: 300px;
+    height: 400px;
+  }
+  .SignUp_Form{
+    width: 300px;
+    height: 400px;
+  }
+
+  h3{
+    margin-top: 0px;
+  }
+}
