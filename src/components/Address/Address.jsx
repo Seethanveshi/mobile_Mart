@@ -4,6 +4,7 @@ import '../../CSS/Address.css'
 import { states , states_districts } from '../../JavaScript/JavaScript';
 import databaseService from '../../Database/Database';
 import { useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Address() {
 
@@ -22,12 +23,16 @@ function Address() {
     const [savedAddress , setSavedAddress] = useState();
     const [selectedAddress , setSelectedAddress] = useState(); 
 
+    const [Loading , setLoading] = useState(false);
+
     useEffect(() => {
         getSavedAddress();
     } , [])
 
     const getSavedAddress = async() => {
+        setLoading(true);
         const address = await databaseService.getAllAddresses();
+        setLoading(false);
         setSavedAddress(address);
     }
 
@@ -47,7 +52,9 @@ function Address() {
         let update = savedAddress;
         update = [...update , AddressObj];
         setSavedAddress(update);
+        setLoading(true);
         await databaseService.addAddress(AddressObj);
+        setLoading(false);
         getSavedAddress();
 
         setName('');
@@ -69,6 +76,9 @@ function Address() {
         localStorage.setItem('deliveryAdd' , JSON.stringify(add));
         navigate('/Payment');
     }
+
+
+    if(Loading) return <LoadingSpinner /> 
 
     return (
         <div className="addressPage">

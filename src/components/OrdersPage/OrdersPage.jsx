@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import databaseService from '../../Database/Database';
 import '../../CSS/OrdersPage.css';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function OrdersPage() {
 
-
     const [orders , setOrders] = useState();
+    const [Loading , setLoading] = useState(false);
 
     useEffect(() => {
         fetchOrdersData();
     },[])
 
     const fetchOrdersData = async() => {
+        setLoading(true);
         const data = await databaseService.getOrderedItems();
         setOrders(data);
+        setLoading(false);
     }
 
+    if(Loading) return <LoadingSpinner />
     
     return (
         <div className='ordersPage'>

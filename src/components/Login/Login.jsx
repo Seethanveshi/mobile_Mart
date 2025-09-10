@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import InputBox from '../InputBox/InputBox'
 import { useDispatch , useSelector } from 'react-redux';
 import { updateActivePage } from '../../ReduxtoolKit/Slice/Slice';
-import { LoginRedux } from '../../ReduxtoolKit/Slice/authSlice';
 import authService from '../../Auth/Auth';
 import { useNavigate } from 'react-router-dom';
 import { LoginUser } from '../../ReduxtoolKit/Slice/authThunk';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Login() {
 
@@ -14,10 +14,11 @@ function Login() {
     const [Email , setEmail] = useState('');
     const [Password , setPassword] = useState('');
 
-    const isActicve = useSelector((state) => state.activePage);
+    const isActive = useSelector((state) => state.activePage);
     const dispatch = useDispatch();
 
     const authData = useSelector((state) => state.authService);
+
 
     const LoginHandler = async (e) =>{
         e.preventDefault();
@@ -31,7 +32,7 @@ function Login() {
             
             setEmail('');
             setPassword('');
-
+            
             navigate('/Home');
             
             
@@ -45,11 +46,12 @@ function Login() {
 
     }
 
+
   return (
     <>
         <div>
             {
-                isActicve == 'Login' ? <div className={`Login_Form ${isActicve=='Login' ? 'Active' : ''}`}>
+                isActive == 'Login' ? <div className={`Login_Form ${isActive=='Login' ? 'Active' : ''}`}>
                 <form onSubmit={LoginHandler}>
                     {/* <div style={{color:'black' , fontSize:20 , fontWeight:'bold'}}>Welcome Back!</div> */}
                     <h3 style={{color:'black' , fontWeight:'bold' , fontSize:'20px'}}>Login</h3>

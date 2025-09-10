@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../CSS/OrderPlacedPage.css'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+
 
 function OrderPlacedPage() {
+
+  const [Loading , setLoading] = useState(true);
+
+  setTimeout(() => {
+    setLoading(false);
+  } , 1000)
+
+  if(Loading) return <LoadingSpinner />
+
+
   return (
     <div className="orderPlacedPage">
       <div className="content">

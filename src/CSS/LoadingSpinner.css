@@ -1,0 +1,22 @@
+.LoadingSpinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.Spinner{
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 4px dotted green;
+    border-top: 4px solid white;
+    animation: spin 1s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes spin{
+    to{
+        transform: rotate(360deg);
+    }
+}

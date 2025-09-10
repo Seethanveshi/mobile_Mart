@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector , useDispatch } from 'react-redux';
 import { setCartItemsRedux , setGuestCartItemsRedux} from '../../ReduxtoolKit/Slice/cartRedux';
 import '../../CSS/SingleMobile.css';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function SingleMobile() {
 
@@ -18,6 +19,7 @@ function SingleMobile() {
     const [specs , setSpecs] = useState([]);
 
     const [wish , setWish] = useState(false);
+    const [Loading , setLoading] = useState(false);
  
     const dispatch = useDispatch();
 
@@ -37,7 +39,9 @@ function SingleMobile() {
     }
 
     const fetchdata = async() =>{
+        setLoading(true);
         const mobileData = await databaseService.getData(id);
+        setLoading(false);
 
         setMobileData(mobileData);
 
@@ -75,7 +79,9 @@ function SingleMobile() {
 
 
     const fetchWishlistData = async() => {
+        setLoading(true);
         const data = await databaseService.getWishlist();
+        setLoading(false);
 
         const ind = data?.findIndex((product) => product.ProductId == id) || -1;
 
@@ -128,7 +134,6 @@ function SingleMobile() {
         
     }
 
-
     const handleWishlist = () => {
 
         if(reduxData.status){
@@ -142,12 +147,15 @@ function SingleMobile() {
     }
 
     const BuyNow = async (mobile) => {
+        setLoading(true);
         await addToCart(mobile);
-        window.location.href = '/cart';
+        setLoading(false);
+        navigate('/cart');
     }
 
-
     // console.log(mobile);
+
+    if(Loading) return <LoadingSpinner />
 
     return (
 

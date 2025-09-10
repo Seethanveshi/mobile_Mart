@@ -19,6 +19,8 @@ function Cart() {
     const [discount , setDiscount] = useState(0);
     const [totalAmount , setTotalAmount] = useState(0);
 
+    const [Loading , setloading] = useState(false);
+
     useEffect(() => {
       fetch();
     }, []);

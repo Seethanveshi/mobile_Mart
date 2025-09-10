@@ -4,19 +4,23 @@ import { useSelector , useDispatch } from 'react-redux';
 import { newArrival } from '../../ReduxtoolKit/Slice/HomeRedux';
 import { useParams } from 'react-router-dom';
 import '../../CSS/Mobiles.css'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Mobiles() {
 
   const {category , categoryName} = useParams();
 
   const [MobileCategory  , setMobileCategoty] = useState([]);
+  const [Loading , setLoading] = useState(false);
 
   const data = useSelector(state => state.homeDataService);
   const Dispatch = useDispatch();
 
   useEffect(() => {
     const fetch = async() => {
+        setLoading(true);
         const Mobiles = await databaseService.getCategoryMobiles(categoryName , category);
+        setLoading(false);
         setMobileCategoty(Mobiles);
     }
 
@@ -24,7 +28,7 @@ function Mobiles() {
 
   } , []);
 
-  console.log(MobileCategory);
+  if(Loading) return <LoadingSpinner />
 
   return (
     <div className="mobiles">

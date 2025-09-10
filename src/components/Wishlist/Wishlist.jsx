@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import databaseService from '../../Database/Database';
 import '../../CSS/Wishlist.css'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Wishlist() {
 
     const [wishList , setWishlist] = useState([]);
+    const [Loading , setLoading] = useState(false);
 
     useEffect(() =>{
         const fetchWishlistData = async() => {
+            setLoading(true);
             const data = await databaseService.getWishlist();
+            setLoading(false);
             setWishlist(data);
         }
 
         fetchWishlistData();
     } , []);
 
+    if(Loading) return <LoadingSpinner />
 
   return (
     <div className="wishlistPage">

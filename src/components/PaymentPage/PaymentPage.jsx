@@ -6,6 +6,7 @@ import { getDate } from '../../JavaScript/JavaScript';
 import { useNavigate } from 'react-router-dom';
 import { clearCartItemsRedux } from '../../ReduxtoolKit/Slice/cartRedux';
 import { useSelector , useDispatch } from 'react-redux';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function PaymentPage() {
 
@@ -19,6 +20,8 @@ function PaymentPage() {
     const [totalMRP , setTotalMRP] = useState(0);
     const [discount , setDiscount] = useState(0);
     const [totalAmount , setTotalAmount] = useState(0);
+
+    const [Loading , setLoading] = useState(false);
 
     useEffect(() => {
         fetchForCart();
@@ -52,6 +55,7 @@ function PaymentPage() {
 
     const OrderPlaced = async() => {
         try{
+            setLoading(true);
             cartItems.map(async (product) => (
                 await databaseService.addOrderedItems(product)
             ))
@@ -59,12 +63,18 @@ function PaymentPage() {
                 await databaseService.deleteItem(product.$id)
             ))
             dispatch(clearCartItemsRedux());
+            setLoading(false);
             navigate('/orderPlaced');
         }
         catch(error){
+            setLoading(false);
             console.log('Error in Payement Page ' , error);
         }
     }
+
+                
+    if(Loading) return <LoadingSpinner />
+
 
   return (
 

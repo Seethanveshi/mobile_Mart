@@ -7,9 +7,13 @@ import { flagShip, newArrival , midRange , budget } from '../../ReduxtoolKit/Sli
 import { NavLink } from 'react-router-dom'
 import authService from '../../Auth/Auth'
 import Footer from '../Footer/Footer'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner'
 
 function Home() {
 
+    const [Loading , setLoading] = useState(false);
+
+    
     const [newArrivals , setNewArrivals] = useState([]);
     const [flagShips , setFlagShips] = useState([]);
     const [midRanges , setMidRanges] = useState([]);
@@ -36,6 +40,7 @@ function Home() {
     useEffect(() => {
         const fetchHomeData = async() =>{
 
+            setLoading(true);
             const newArrivalData = await databaseService.getCategoryMobiles('Category' , 'newArrival');
             setNewArrivals(newArrivalData);
             const flagShipData = await databaseService.getCategoryMobiles('Category' , 'flagShip');
@@ -46,11 +51,14 @@ function Home() {
 
             const budgetData = await databaseService.getCategoryMobiles('Category' , 'budget');
             setBudgets(budgetData);
+            setLoading(false);
         }
 
         fetchHomeData();
 
     } , []);
+
+    if(Loading) return <LoadingSpinner />
 
   return (
     <>
