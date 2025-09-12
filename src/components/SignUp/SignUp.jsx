@@ -4,12 +4,17 @@ import { useDispatch , useSelector } from 'react-redux';
 import { updateActivePage } from '../../ReduxtoolKit/Slice/Slice';
 import authService from '../../Auth/Auth';
 import { LoginRedux , PasswordValid , LogOutRedux } from '../../ReduxtoolKit/Slice/authSlice';
+import '../../CSS/LoginandSignUp.css';
+
+
 function SignUp() {
 
     const [Name , setName] = useState('');
     const [Email , setEmail] = useState('');
     const [Password , setPassword] = useState('');
     const [ConfirmPassword , setConfirmPassword] = useState('');
+    const [Loading , setLoading] = useState(false);
+    
 
    const isActive = useSelector((state) => state.activePage);
    const Dispatch = useDispatch();
@@ -37,11 +42,13 @@ function SignUp() {
         }
 
         try{
+            setLoading(true);
             const session = await authService.createAccount({Email , Password , Name});
             const data = await authService.getCurrentUser();
             Dispatch(LoginRedux(data));
-
+            setLoading(false);
             alert("SignUp Sucessful");
+            
 
             setName('');
             setEmail('');
@@ -50,6 +57,7 @@ function SignUp() {
 
         }
         catch(error){
+            setLoading(false);
             if(error.code === 409){
                 document.querySelector('.Error').innerHTML = "User already exists. Try logging in instead.";
             }
@@ -82,7 +90,12 @@ function SignUp() {
                         </div>
                         <div>
                             <button className='SignUp_Button' type='submit'>
-                                SignUp
+                                {
+                                    Loading ? <div style={{display:'flex' , justifyContent:'center' , alignItems:'center'}}>
+                                                    <div className='Spinner_LoginSignUp'></div>
+                                                </div>
+                                                : 'SignUp'
+                                }
                             </button>
                         </div>
                     </div>

@@ -224,3 +224,19 @@ input{
     margin-top: 0px;
   }
 }
+
+
+.Spinner_LoginSignUp{
+    width: 2rem;
+    height: 2rem;
+    border: 4px solid white;
+    border-top: 4px solid green;
+    animation: spinner 1s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes spinner{
+    to{
+        transform: rotate(360deg);
+    }
+}

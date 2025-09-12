@@ -5,7 +5,7 @@ import { updateActivePage } from '../../ReduxtoolKit/Slice/Slice';
 import authService from '../../Auth/Auth';
 import { useNavigate } from 'react-router-dom';
 import { LoginUser } from '../../ReduxtoolKit/Slice/authThunk';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import '../../CSS/LoginandSignUp.css';
 
 function Login() {
 
@@ -13,6 +13,7 @@ function Login() {
 
     const [Email , setEmail] = useState('');
     const [Password , setPassword] = useState('');
+    const [Loading , setLoading] = useState(false);
 
     const isActive = useSelector((state) => state.activePage);
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function Login() {
         e.preventDefault();
 
         try {
+            setLoading(true);
             await authService.loginUser({Email , Password});
             const data = await authService.getCurrentUser();
             dispatch(LoginUser(data));
@@ -32,11 +34,13 @@ function Login() {
             
             setEmail('');
             setPassword('');
+            setLoading(false);
             
             navigate('/Home');
             
             
         } catch (error) {
+            setLoading(false);
             if(error.code === 401){
                 document.querySelector('.Error').innerHTML = 'Invalid Credentials. Check Email and Password';
             }
@@ -70,7 +74,12 @@ function Login() {
                         </div>
                         <div>
                             <button className='Login_Button' type='submit'>
-                                Login
+                                {
+                                    Loading ? <div style={{display:'flex' , justifyContent:'center' , alignItems:'center'}}>
+                                                    <div className='Spinner_LoginSignUp'></div>
+                                                </div>
+                                                : 'Login'
+                                }
                             </button>
                         </div>
                     </div>
